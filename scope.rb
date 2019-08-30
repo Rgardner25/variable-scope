@@ -1,0 +1,18 @@
+    
+require 'rspec'
+
+val = 0
+
+proc_process = -> { val += 1 }
+
+def some_method
+  val += 1
+end
+
+describe 'Proc/lambda vs method' do
+  it 'can access a variable outside its scope and process it' do
+    proc_process.call
+    proc_process.call
+    proc_process.call
+    expect(proc_process.call).to eq(4)
+  end
